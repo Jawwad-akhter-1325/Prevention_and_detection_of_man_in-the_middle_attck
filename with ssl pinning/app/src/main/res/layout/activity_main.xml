@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.ismproj.sslpin.main.MainViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".main.MainActivity">
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="GET JSON"
+                app:cornerRadius="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_margin="16dp"
+                app:imageUrl="@{viewModel.userData.imageUrl}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_editor_absoluteY="69dp"/>
+
+        <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_marginTop="20dp"
+                android:text="@{viewModel.userData.name}"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/iv_profile"
+                app:layout_constraintTop_toBottomOf="@+id/btn_search"/>
+
+        <TextView
+                android:id="@+id/tv_handle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text=""
+                android:textSize="30sp"
+                app:layout_constraintLeft_toRightOf="@id/iv_profile" app:layout_constraintTop_toBottomOf="@id/tv_name"/>
+
+        <TextView
+                android:id="@+id/tv_followers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:text="@{viewModel.userData.getFollowers()}" android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/iv_profile"/>
+
+        <TextView
+                android:id="@+id/tv_following"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@{viewModel.userData.getFollowing()}" android:textSize="30sp"
+                app:layout_constraintLeft_toRightOf="@id/iv_profile" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_followers"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

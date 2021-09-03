@@ -1,0 +1,27 @@
+package com.ismproj.sslpinning.network
+
+import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Path
+
+
+private const val BASE_URL = "https://vitaccess.tech"
+
+private val retrofit = Retrofit.Builder()
+    .addConverterFactory(GsonConverterFactory.create())
+    .baseUrl(BASE_URL)
+    .build()
+
+interface GithubApiService {
+    @GET("/{profile}")
+    fun getUserData(@Path("profile") profile: String):
+            Call<VitaccessData>
+}
+
+object GithubApi {
+    val retrofitService: GithubApiService by lazy {
+        retrofit.create(GithubApiService::class.java)
+    }
+}
